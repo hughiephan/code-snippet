@@ -55,7 +55,7 @@ resource "aws_security_group" "test_sg" {
 ############
 resource "aws_instance" "foo" {
   ami           = "ami-0bb4291f4340a8658" # singapore
-  instance_type = "t2.small"
+  instance_type = "t2.medium"
 
   # key_name      = "${aws_key_pair.generated_key.key_name}" // Use generated key
   key_name = var.key_name // Use local key 
@@ -64,6 +64,11 @@ resource "aws_instance" "foo" {
 
   credit_specification {
     cpu_credits = "unlimited"
+  }
+
+  root_block_device{
+    volume_size = 20
+    volume_type = "gp2"
   }
 
   connection {
