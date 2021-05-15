@@ -1,0 +1,3 @@
+https://hub.docker.com/_/redis/ - connecting via redis-cli
+Connect: docker run -it --rm redis:4-alpine redis-cli -h [PRIMARY_ENDPOINT_NO_NEED_PORT]
+Export RDB: redis-cli -h {source_redis_address} -p 6379 -a {password} --rdb {output.rdb}

@@ -1,0 +1,1 @@
+az group create --name <resource-group-name> --location <resource-group-location>

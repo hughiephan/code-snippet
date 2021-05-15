@@ -1,0 +1,7 @@
+# Generate Access Token here: https://www.dropbox.com/developers/apps?_tk=pilot_lp&_ad=topbar4&_camp=myapps
+
+curl -X POST https://content.dropboxapi.com/2/files/upload \
+    --header "Authorization: Bearer $KEY_HERE" \
+    --header "Dropbox-API-Arg: {\"path\": \"/Upload/$FILE_HERE.zip\",\"mode\": \"add\",\"autorename\": true,\"mute\": false,\"strict_conflict\": false}" \
+    --header "Content-Type: application/octet-stream" \
+    --data-binary @$FILE_HERE.zip
