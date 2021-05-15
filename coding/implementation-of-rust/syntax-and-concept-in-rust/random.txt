@@ -1,0 +1,38 @@
+Chapter 10
+
+---
+struct S<T> {
+    x: T, 
+    z: T, // Can I make this optional ?
+}
+
+fn main() {
+    let s = S { x: 1, y: 2};
+}
+
+---
+enum for generic type?
+
+---
+// Wrong because Rust need to know the size of an argument. Using & with reference to that and then Rust will know the size.
+fn largest_i32 (list: [i32]) {}
+
+vs
+
+fn largest_i32 (list: &[i32]) {}
+
+---------
+
+cargo-features = ["named-profiles"]
+
+[package]
+name = "todo-cli"
+version = "0.1.0"
+authors = ["thala321"]
+edition = "2018"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[profile.staging]
+inherits = "dev"
+opt-level = 1
