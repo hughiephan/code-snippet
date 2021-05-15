@@ -1,0 +1,88 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Quản lý xe vào ra</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/css/bootstrap.min.css" />
+    <script src="~/lib/jquery/jquery.min.js"></script>
+    <style>
+        .warning{
+            color:red;
+            font-weight:bold;
+        }
+    </style>
+</head>
+<body>
+    <div style="margin: 0 auto;box-shadow: 2px 2px 15px 3px #808080;padding:20px;margin:30px;">
+        <div class="row">
+            <div class="col-6">
+                <p style="font-size:30px;text-align:center;">Làn xe ra</p>
+                <div class="row">
+                    <div class="col-6">
+                        <p style="text-align:center;">Thông tin xe vào</p>
+                        <img id="plates_img1" src="~/images/default-plates.jpg" style="width:100%;" />
+                        <div class="form-group" style="margin-top:20px;">
+                            <label for="plate_out1">Biển số vào</label>
+                            <input type="text" class="form-control" id="plate_out1" disabled="" value="">
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <p style="text-align:center;">Thông tin xe ra</p>
+                        <img id="plates_img2" src="~/images/default-plates.jpg" style="width:100%;" />
+                        <div class="form-group" style="margin-top:20px;">
+                            <label for="plate_out2">Biển số ra</label>
+                            <input type="text" class="form-control" id="plate_out2" disabled="" value="">
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <div class="row">
+                        <div class="form-group col-6">
+                            <label for="time_in1">Thời gian xe gian vào</label>
+                            <input type="text" class="form-control" id="time_in1" disabled="" value="">
+                        </div>
+                        <div class="form-group col-6">
+                            <label for="time_out1">Thời gian xe gian ra</label>
+                            <input type="text" class="form-control" id="time_out1" disabled="" value="">
+                        </div>
+                        <div class="form-group col-12">
+                            <label for="total_hour">Thời gian gửi</label>
+                            <input type="text" class="form-control" id="total_hour" disabled="" value="">
+                        </div>
+                        <div class="form-group col-12">
+                            <label for="total_cost">Tổng tiền</label>
+                            <input type="text" class="form-control" id="total_cost" disabled="" value="">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-6">
+                <p style="font-size:30px;text-align:center;">Làn xe vào</p>
+                <div class="row">
+                    <div class="col-12">
+                        <p style="text-align:center;">Thông tin xe vào</p>
+                        <img id="plate_in" src="~/images/default-plates.jpg" style="width:100%;" />
+                        <div class="row">
+                            <div class="form-group col-6" style="margin-top:20px;">
+                                <label for="plate_txt_in">Biển số vào</label>
+                                <input  type="text" class="form-control" id="plate_txt_in" disabled="" value="">
+                            </div>
+                            <div class="form-group col-6" style="margin-top:20px;">
+                                <label for="time_in_parking">Thời gian vào</label>
+                                <input type="text" class="form-control" id="time_in_parking" disabled="" value="">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="~/lib/signalr/dist/browser/signalr.min.js"></script>
+    <script src="~/js/module.plate-recognization.js" asp-append-version="true"></script>
+</body>
+</html>

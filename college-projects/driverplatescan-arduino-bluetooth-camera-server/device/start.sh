@@ -1,0 +1,1 @@
+modprobe v4l2_common && python raspberry.py

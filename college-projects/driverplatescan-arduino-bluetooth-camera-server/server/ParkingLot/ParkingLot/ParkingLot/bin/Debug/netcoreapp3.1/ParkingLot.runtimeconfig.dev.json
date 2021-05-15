@@ -1,0 +1,8 @@
+{
+  "runtimeOptions": {
+    "additionalProbingPaths": [
+      "/Users/sprise/.dotnet/store/|arch|/|tfm|",
+      "/Users/sprise/.nuget/packages"
+    ]
+  }
+}

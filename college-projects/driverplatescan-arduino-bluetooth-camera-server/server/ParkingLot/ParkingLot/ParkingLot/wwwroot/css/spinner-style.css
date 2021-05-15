@@ -1,0 +1,5 @@
+﻿.spinner-layout{position:fixed;top:0;left:0;bottom:0;right:0;background:rgba(53, 58, 57, 0.5);z-index:2000;}
+ .spinner-layout .spinner-box{width:500px;margin:0 auto;position:relative;top:40%;}
+ .spinner-layout .spinner-box > img{width:130px;position:relative;left:50%;transform:translateX(-50%);height:130px;}
+ .spinner-layout .spinner-box > h2{font-size:25px;color:#fff;text-align:center;margin-top:15px;font-weight:400;}
+.sweetalert2-success-title{font-size:24px;}
