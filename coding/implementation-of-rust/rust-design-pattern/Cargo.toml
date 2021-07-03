@@ -9,5 +9,9 @@ edition = "2018"
 [dependencies]
 
 [[bin]]
-name = "rust-design-pattern"
+name = "strategy-pattern"
 path = "strategy-pattern/main.rs"
+
+[[bin]]
+name = "builder-pattern"
+path = "builder-pattern/main.rs"
