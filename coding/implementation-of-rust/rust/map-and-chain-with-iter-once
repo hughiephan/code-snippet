@@ -1,0 +1,24 @@
+# Reference: https://doc.rust-lang.org/std/iter/fn.once.html
+
+use std::iter;
+use std::fs;
+use std::path::PathBuf;
+
+fn main() {
+    let dirs = fs::read_dir(".foo").unwrap();
+
+    // we need to convert from an iterator of DirEntry-s to an iterator of
+    // PathBufs, so we use map
+    let dirs = dirs.map(|file| file.unwrap().path());
+    
+    // now, our iterator just for our config file
+    let config = iter::once(PathBuf::from(".foorc"));
+    
+    // chain the two iterators together into one big iterator
+    let files = dirs.chain(config);
+    
+    // this will give us all of the files in .foo as well as .foorc
+    for f in files {
+        println!("{:?}", f);
+    }
+}
