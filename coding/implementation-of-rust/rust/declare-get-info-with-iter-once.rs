@@ -1,3 +1,7 @@
+# Reference 
+# https://docs.rs/libp2p-core/0.3.2/src/libp2p_core/upgrade/mod.rs.html#94-102
+# https://github.com/libp2p/rust-libp2p/blob/master/transports/deflate/src/lib.rs
+
 pub trait UpgradeInfo {
     /// Opaque type representing a negotiable protocol.
     type Info: ProtocolName + Clone;
