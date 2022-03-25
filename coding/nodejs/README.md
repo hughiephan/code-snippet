@@ -1,5 +1,6 @@
 This folder includes
 - CLI (vorpal)
+- CSV Parser
 
 Install
 ```
