@@ -64,13 +64,13 @@ function getTokenBalance (transactions) {
 // Format is YYYY-MM-DD
 function isInChoosenDate(timestamp, choosenDate){
   date = choosenDate.split("-");
-  const startOfDate = Math.round(Date.parse(new Date( date[0], date[1], date[2], 0, 0, 0)) / 1000);
-  const endOfDate = Math.round(Date.parse(new Date( date[0], date[1], date[2], 23, 59, 59)) / 1000);
+  const startOfDate = Math.round(Date.parse(new Date(Date.UTC(date[0], date[1] - 1, date[2], 0, 0, 0))) / 1000);
+  const endOfDate = Math.round(Date.parse(new Date(Date.UTC(date[0], date[1] - 1, date[2], 23, 59, 59))) / 1000);
   if (timestamp >= startOfDate && timestamp <= endOfDate) {
-    console.log("Processing: ".concat(timestamp, " transaction is valid ",choosenDate, "(",startOfDate, ",", endOfDate, ")"));
+    console.log("Processing: ".concat(timestamp, " transaction is valid ", choosenDate, "(",startOfDate, ",", endOfDate, ")"));
     return true;
   } 
-  console.log("Processing: ".concat(timestamp, " transaction is not in the given date ",choosenDate, "(",startOfDate, ",", endOfDate, ")"));
+  console.log("Processing: ".concat(timestamp, " transaction is not in the given date ", choosenDate, "(",startOfDate, ",", endOfDate, ")"));
   return false;
 };
 
