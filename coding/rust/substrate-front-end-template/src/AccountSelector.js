@@ -82,7 +82,7 @@ function Main (props) {
             search
             selection
             clearable
-            placeholder='Select an account'
+            placeresult='Select an account'
             options={keyringOptions}
             onChange={(_, dropdown) => {
               onChange(dropdown.value);

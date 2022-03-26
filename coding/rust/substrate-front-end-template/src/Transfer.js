@@ -32,7 +32,7 @@ export default function Main (props) {
             fluid
             label='To'
             type='text'
-            placeholder='address'
+            placeresult='address'
             state='addressTo'
             onChange={onChange}
           />

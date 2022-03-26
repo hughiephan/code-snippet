@@ -210,12 +210,12 @@ function Main (props) {
           />
         </Form.Field>
         {paramFields.map((paramField, ind) =>
-          <Form.Field key={`${paramField.name}-${paramField.type}`}>
+          <Form.Field key={`${paramField.token}-${paramField.type}`}>
             <Input
               placeholder={paramField.type}
               fluid
               type='text'
-              label={paramField.name}
+              label={paramField.token}
               state={{ ind, paramField }}
               value={ inputParams[ind] ? inputParams[ind].value : '' }
               onChange={onPalletCallableParamChange}

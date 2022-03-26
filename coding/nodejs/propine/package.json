@@ -1,5 +1,5 @@
 {
-  "name": "csv",
+  "name": "propine",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -11,7 +11,8 @@
   "dependencies": {
     "csv-parser": "^3.0.0",
     "needle": "^3.0.0",
-    "unzipper": "^0.10.11"
+    "unzipper": "^0.10.11",
+    "vorpal": "^1.12.0"
   },
   "devDependencies": {
     "jest": "^27.5.1"
