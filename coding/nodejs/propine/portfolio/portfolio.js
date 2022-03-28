@@ -1,4 +1,5 @@
 const csvParser = require("csv-parser");
+const client = require("../core/client");
 const fs = require('fs');
 
 /**
@@ -14,9 +15,10 @@ function all(path) {
     const {amount, timestamp} = data;
     console.log("Processing: ", timestamp);
     data.amount = parseFloat(amount); 
-    transactions.push(data); 
+    transactions.push(data);
   })
   .on("end", () => {
+    client.getTokenPrice("BTC", "USD");
     console.log(caclculateTokenBalance(transactions));
   });
 }
