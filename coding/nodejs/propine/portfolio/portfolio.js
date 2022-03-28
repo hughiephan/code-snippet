@@ -18,11 +18,7 @@ function all(path) {
     transactions.push(data);
   })
   .on("end", async () => {
-    const tokenBalance = caclculateTokenBalance(transactions);
-    tokenBalance.forEach(async function(e){
-      const price = await client.getDataPrice(e.token, "USD");
-      console.log("[portfolio] Portfolio for: " + e.token + ". Total Balance in USD: " + (price.USD * e.amount));
-    });
+    calculatePortfolio(transactions, "USD");
   });
 }
 
@@ -42,7 +38,7 @@ function byToken(path, tokenName) {
     if (token = tokenName) transactions.push(data); 
   })
   .on("end", () => {
-    console.log(caclculateTokenBalance(transactions));
+    calculatePortfolio(transactions, "USD");
   });
 }
 
@@ -61,8 +57,7 @@ function byDate(path, choosenDate) {
     if (isInChoosenDate(timestamp, choosenDate)) transactions.push(data); 
   })
   .on("end", () => {
-    console.log(transactions);
-    console.log(caclculateTokenBalance(transactions));
+    calculatePortfolio(transactions, "USD");
   });
 }
 
@@ -99,6 +94,19 @@ function isInChoosenDate(timestamp, choosenDate){
   console.log("Processing: ".concat(timestamp, " transaction is not in the given date ", choosenDate, "(",startOfDate, ",", endOfDate, ")"));
   return false;
 };
+
+/**
+ * Calculate the portfolio for each tokens
+ * (portfolio = total token amount * current price)
+ * @param transactions  Array of transactions.
+ */
+function calculatePortfolio(transactions, fsym){
+  const tokenBalance = caclculateTokenBalance(transactions);
+  tokenBalance.forEach(async function(e){
+    const price = await client.getDataPrice(e.token, fsym);
+    console.log("Portfolio for " + e.token + ". Total Balance: " + (price.USD * e.amount) + fsym);
+  });
+}
 
 module.exports = {
   all,

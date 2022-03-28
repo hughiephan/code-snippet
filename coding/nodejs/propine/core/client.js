@@ -14,7 +14,7 @@ const getDataPrice = async (fsym, tsyms) => {
             baseURL: option.crypto_api_url,
         })
        if(res.status == 200){
-           console.log("[getDataPrice] Current price for ".concat(fsym, " is ", res.data[tsyms], tsyms))
+        //    console.log("Current price for ".concat(fsym, " is ", res.data[tsyms], tsyms))
        }    
        return res.data
    }
