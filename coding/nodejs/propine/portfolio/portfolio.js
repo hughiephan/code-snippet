@@ -7,7 +7,8 @@ const fs = require('fs');
  * @param path        Location of the CSV.
  * @param tokenName   Token we want to filter.
  */
-function all(path) {
+
+async function all(path) {
   const transactions = [];
   fs.createReadStream(path)
   .pipe(csvParser())
@@ -18,8 +19,11 @@ function all(path) {
     transactions.push(data);
   })
   .on("end", () => {
-    client.getTokenPrice("BTC", "USD");
     console.log(caclculateTokenBalance(transactions));
+
+    // Working async await on this stream
+    const price = await client.getDataPrice("BTC", "USD");
+    console.log("B", price);
   });
 }
 

@@ -2,7 +2,8 @@ const axios = require('axios');
 const option = require('./option');
 
 // https://min-api.cryptocompare.com/data/price?fsym=BTC&tsyms=USD
-function getTokenPrice(fsym, tsyms) {
+// async function getDataPrice(fsym, tsyms) {
+const getDataPrice = async (fsym, tsyms) => {
     axios({
         method: 'get',
         url: '/data/price',
@@ -14,19 +15,15 @@ function getTokenPrice(fsym, tsyms) {
         baseURL: option.crypto_api_url,
     })
     .then(function (response) {
-      // handle success
-      console.log(response);
+      console.log("A", response.data);
+      return response.data
     })
     .catch(function (error) {
-      // handle error
       console.log(error);
     })
-    .then(function () {
-      // always executed
-    });
 }
 
 
 module.exports = {
-    getTokenPrice,
+    getDataPrice,
 }
