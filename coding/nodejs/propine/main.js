@@ -8,7 +8,7 @@ const msg = require("./core/msg");
 // Given no parameters, return the latest portfolio value per token in USD
 vorpal
   .command('all', msg.CALCULATE_PORTFOLIO_ALL)
-  .action(function(_, callback) {
+  .action(async function(_, callback) {
     portfolio.all(option.csv_path);
     callback();
   });
