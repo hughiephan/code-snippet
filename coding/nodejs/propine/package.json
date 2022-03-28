@@ -1,15 +1,17 @@
 {
   "name": "propine",
   "version": "1.0.0",
-  "description": "",
+  "description": "propine interview",
   "main": "index.js",
   "scripts": {
-    "test": "jest"
+    "test": "jest",
+    "start": "node --max-old-space-size=8192 main"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
     "csv-parser": "^3.0.0",
+    "dotenv": "^16.0.0",
     "needle": "^3.0.0",
     "unzipper": "^0.10.11",
     "vorpal": "^1.12.0"

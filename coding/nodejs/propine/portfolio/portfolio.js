@@ -1,6 +1,11 @@
 const csvParser = require("csv-parser");
 const fs = require('fs');
 
+/**
+ * Get all the transactions & calculate their balances
+ * @param path        Location of the CSV.
+ * @param tokenName   Token we want to filter.
+ */
 function all(path) {
   const transactions = [];
   fs.createReadStream(path)
@@ -12,11 +17,15 @@ function all(path) {
     transactions.push(data); 
   })
   .on("end", () => {
-    console.log(getTokenBalance(transactions));
+    console.log(caclculateTokenBalance(transactions));
   });
 }
 
-// Only get the transactions with the given Token Name
+/**
+ * Get the transactions with the given Token Name & calculate their balances
+ * @param path        Location of the CSV.
+ * @param tokenName   Token we want to filter.
+ */
 function byToken(path, tokenName) {
   const transactions = [];
   fs.createReadStream(path)
@@ -28,11 +37,15 @@ function byToken(path, tokenName) {
     if (token = tokenName) transactions.push(data); 
   })
   .on("end", () => {
-    console.log(getTokenBalance(transactions));
+    console.log(caclculateTokenBalance(transactions));
   });
 }
 
-// Only get the transactions in the given Date
+/**
+ * Get the transactions in the given Date & calculate their balances
+ * @param path          Location of the CSV.
+ * @param choosenDate   Date we want to filter. Format should by YYYY-MM-DD
+ */
 function byDate(path, choosenDate) {
   const transactions = [];
   fs.createReadStream(path)
@@ -44,24 +57,32 @@ function byDate(path, choosenDate) {
   })
   .on("end", () => {
     console.log(transactions);
-    console.log(getTokenBalance(transactions));
+    console.log(caclculateTokenBalance(transactions));
   });
 }
 
-//
-// Private function
-//
-function getTokenBalance (transactions) {
-  const res = Array.from(transactions.reduce((m, { token, amount, transaction_type }) => {
+/**
+ * Calculate the token balances from transactions. 
+ * - If type = 'DEPOSIT', add the amount for that token.
+ * - If type = 'WITHDRAWAL', substrat the amount for that token.
+ * @param transactions  Array of transactions.
+ * @return              Token with it's balance calculated
+ */
+function caclculateTokenBalance (transactions) {
+  const tokenBalance = Array.from(transactions.reduce((m, { token, amount, transaction_type }) => {
       if (transaction_type === 'DEPOSIT')
           return m.set(token, (m.get(token) || 0) + amount)
       else if (transaction_type === 'WITHDRAWAL')
           return m.set(token, (m.get(token) || 0) - amount)
   }, new Map), ([token, amount]) => ({ token, amount }));
-  return res;
+  return tokenBalance;
 };
 
-// Format is YYYY-MM-DD
+/**
+ * Check if the current timestamp of the transaction is in the choosenDate
+ * @param timestamp  a transaction's timestamp
+ * @return           (boolean)
+ */
 function isInChoosenDate(timestamp, choosenDate){
   date = choosenDate.split("-");
   const startOfDate = Math.round(Date.parse(new Date(Date.UTC(date[0], date[1] - 1, date[2], 0, 0, 0))) / 1000);
