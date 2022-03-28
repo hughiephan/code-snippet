@@ -41,6 +41,7 @@ npm run test
 If the project failed to start, you can have a look at the
 - `package.json`. Change the `--max-old-space-size=8192` to your computer RAM 
 - `Makefile`. Make sure all the prerequistes here have been installed 
+- `core/option.js`. You can add an .env file or modify the default values here 
 - If a folder is not found, please manually create it (I might have forget to add .gitkeep)
 
 
