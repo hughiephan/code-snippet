@@ -96,7 +96,7 @@ function isInChoosenDate(timestamp, choosenDate){
 };
 
 /**
- * Calculate the portfolio for each tokens
+ * Calculate the portfolio for each tokens in the transactions array
  * (portfolio = total token amount * current price)
  * @param transactions  Array of transactions.
  */
@@ -104,7 +104,7 @@ function calculatePortfolio(transactions, fsym){
   const tokenBalance = caclculateTokenBalance(transactions);
   tokenBalance.forEach(async function(e){
     const price = await client.getDataPrice(e.token, fsym);
-    console.log("Portfolio for " + e.token + ". Total Balance: " + (price.USD * e.amount) + fsym);
+    console.log("Portfolio for " + e.token + ". Total Balance: " + (price * e.amount) + fsym);
   });
 }
 
