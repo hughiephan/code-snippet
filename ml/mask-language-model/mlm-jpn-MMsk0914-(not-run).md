@@ -26,20 +26,17 @@ tokens_tensor = torch.tensor([indexed_tokens])
 lm_bert.eval()
 outputs = lm_bert(tokens_tensor)
 pred = outputs[0][0, masked_idx]
-
 # Function
 def predict_mlm(model, input, masked_idx):
     with torch.no_grad():
         outputs = model(input)
         # 予測結果の上位5件を抽出
         predictions = outputs[0][0, masked_idx].topk(5) 
-
     for i, idx in enumerate(predictions.indices):
         index = idx.item()
         print(index)
         token = bert_tokenizer.convert_ids_to_tokens([index])[0]
-        print(f'順位:{i + 1}\n単語:{token}')
-        
+        print(f'順位:{i + 1}\n単語:{token}')  
 # Run
 predict_mlm(lm_bert, tokens_tensor, masked_idx)
 ```
