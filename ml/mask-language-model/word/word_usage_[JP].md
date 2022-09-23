@@ -29,8 +29,7 @@ pred = outputs[0][0, masked_idx]
 def predict_mlm(model, input, masked_idx):
     with torch.no_grad():
         outputs = model(input)
-        # 予測結果の上位5件を抽出
-        predictions = outputs[0][0, masked_idx].topk(5) 
+        predictions = outputs[0][0, masked_idx].topk(5) # 予測結果の上位5件を抽出
     for i, idx in enumerate(predictions.indices):
         index = idx.item()
         token = bert_tokenizer.convert_ids_to_tokens([index])[0]
