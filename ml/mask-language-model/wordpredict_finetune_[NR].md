@@ -89,7 +89,36 @@ for epoch in range(epochs):
 ```
 If we don't want to use Optim, backward,... Just use Trainer
 ```
-...
+import torch
+from transformers import BertTokenizer, BertForMaskedLM
+from transformers import AdamW
+from transformers import TrainingArguments
+from transformers import Trainer
+from tqdm import tqdm  # progress bar
+tokenizer = BertTokenizer.from_pretrained('bert-base-uncased')
+model = BertForMaskedLM.from_pretrained('bert-base-uncased')
+with open('dataset.txt', 'r') as fp:
+    text = fp.read().split('\n')
+inputs = tokenizer(text, return_tensors='pt', max_length=512, truncation=True, padding='max_length')
+inputs['labels'] = inputs.input_ids.detach().clone()
+rand = torch.rand(inputs.input_ids.shape)
+mask_arr = (rand < 0.15) * (inputs.input_ids != 101) * \
+           (inputs.input_ids != 102) * (inputs.input_ids != 0)
+selection = []
+for i in range(inputs.input_ids.shape[0]):
+    selection.append(
+        torch.flatten(mask_arr[i].nonzero()).tolist()
+    ) # We deal with array now, not just 1 text
+for i in range(inputs.input_ids.shape[0]):
+    inputs.input_ids[i, selection[i]] = 103
+class MeditationsDataset(torch.utils.data.Dataset):
+    def __init__(self, encodings):
+        self.encodings = encodings
+    def __getitem__(self, idx):
+        return {key: torch.tensor(val[idx]) for key, val in self.encodings.items()}
+    def __len__(self):
+        return len(self.encodings.input_ids)
+dataset = MeditationsDataset(inputs)
 args = TrainingArguments(
     output_dir='out',
     per_device_train_batch_size=16,
