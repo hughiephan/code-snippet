@@ -8,6 +8,7 @@ https://towardsdatascience.com/how-to-fine-tune-a-q-a-transformer-86f91ec92997
 import os
 import requests
 import json
+from transformers import DistilBertTokenizerFast
 if not os.path.exists('squad'):
     os.mkdir('squad')
 url = 'https://rajpurkar.github.io/SQuAD-explorer/dataset/'
@@ -39,4 +40,19 @@ def read_squad(path):
     return contexts, questions, answers
 train_contexts, train_questions, train_answers = read_squad('squad/train-v2.0.json')
 val_contexts, val_questions, val_answers = read_squad('squad/dev-v2.0.json')
+def add_end_idx(answers, contexts):
+    for answer, context in zip(answers, contexts):
+        gold_text = answer['text']
+        start_idx = answer['answer_start']
+        end_idx = start_idx + len(gold_text)
+        if context[start_idx:end_idx] == gold_text:
+            answer['answer_end'] = end_idx
+        else:
+            for n in [1, 2]:
+                if context[start_idx-n:end_idx-n] == gold_text:
+                    answer['answer_start'] = start_idx - n
+                    answer['answer_end'] = end_idx - n
+add_end_idx(train_answers, train_contexts)
+add_end_idx(val_answers, val_contexts)
+
 ```
