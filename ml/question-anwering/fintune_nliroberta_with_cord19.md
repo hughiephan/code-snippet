@@ -1,8 +1,15 @@
+# Finetune question answering nlirobert with Covid dataset
+
+# Reference
+- https://github.com/alexaapo/SBERT-for-Question-Answering-on-COVID-19-Dataset
+
+# Prerequisites
+```
+!pip install -U sentence-transformers
 ```
 
-```
-Code
-```
+# Code
+```python
 import pandas as pd
 import numpy as np
 import pickle
