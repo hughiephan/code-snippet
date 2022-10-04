@@ -72,7 +72,6 @@ embeddings = copy.deepcopy(mini_articles)
 device = torch.device('cuda:0' if torch.cuda.is_available()
                       else 'cpu')
 model_.to(device)
-start_time = time.time()
 origin_list_of_articles = []
 list_of_articles = []
 for article in embeddings:
@@ -84,4 +83,37 @@ for article in embeddings:
     article_list.append(body_text)
   origin_list_of_articles.append(article_list)
   list_of_articles.append(model_.encode(article_list,convert_to_tensor=True))
+queries = ['What are the coronoviruses?', 
+           'What was discovered in Wuhuan in December 2019?', 
+           'What is Coronovirus Disease 2019?', 
+           'What is COVID-19?', 'What is caused by SARS-COV2?', 
+           'How is COVID-19 spread?', 
+           'Where was COVID-19 discovered?', 
+           'How does coronavirus spread?',
+           "Can the use of masks prevent SARS?",
+           "What is the Persistence of virus on surfaces of different materials (e.g. copper, stainless steel, plastic)?",
+           "What ages have higher mortality rate in covid-19?",
+           "What are the protective measures of covid-19?"]
+query_embeddings = model_.encode(queries, convert_to_tensor=True)
+for query, query_embedding in zip(queries, query_embeddings):
+  body_text_distances = []
+  for idx_of_article,article in enumerate(list_of_articles):
+    cos_scores = sentence_transformers.util.semantic_search(query_embedding, article, top_k=5)
+    for elem in cos_scores[0]:
+      body_text_distances.append((idx_of_article,elem['corpus_id'],elem['score']))
+  results = sorted(body_text_distances, key=lambda x: x[2], reverse=True)
+  print("\n=========================================================\n")
+  print("Query:", query)
+  print("\nThe most similar sentences in corpus:\n")
+  print("1. ",origin_list_of_articles[results[0][0]][results[0][1]], "(Score: %.4f)" % (results[0][2]))  
+  print("From title: ", mini_articles[results[0][0]][0])
+  print('\n')
+  print("2. ",origin_list_of_articles[results[1][0]][results[1][1]], "(Score: %.4f)" % (results[1][2]))  
+  print("From title: ", mini_articles[results[1][0]][0])
+  print('\n')
+  print("3. ",origin_list_of_articles[results[2][0]][results[2][1]], "(Score: %.4f)" % (results[2][2]))  
+  print("From title: ", mini_articles[results[2][0]][0])
+  print('\n')
+  print("4. ",origin_list_of_articles[results[3][0]][results[3][1]], "(Score: %.4f)" % (results[3][2]))  
+  print("From title: ", mini_articles[results[3][0]][0])
 ```
