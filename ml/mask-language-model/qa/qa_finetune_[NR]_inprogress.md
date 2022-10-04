@@ -54,5 +54,22 @@ def add_end_idx(answers, contexts):
                     answer['answer_end'] = end_idx - n
 add_end_idx(train_answers, train_contexts)
 add_end_idx(val_answers, val_contexts)
-TODO
+tokenizer = DistilBertTokenizerFast.from_pretrained('distilbert-base-uncased')
+train_encodings = tokenizer(train_contexts, train_questions, truncation=True, padding=True)
+val_encodings = tokenizer(val_contexts, val_questions, truncation=True, padding=True)
+def add_token_positions(encodings, answers):
+    start_positions = []
+    end_positions = []
+    for i in range(len(answers)):
+        start_positions.append(encodings.char_to_token(i, answers[i]['answer_start']))
+        end_positions.append(encodings.char_to_token(i, answers[i]['answer_end']))
+        if start_positions[-1] is None:
+            start_positions[-1] = tokenizer.model_max_length
+        shift = 1
+        while end_positions[-1] is None:
+            end_positions[-1] = encodings.char_to_token(i, answers[i]['answer_end'] - shift)
+            shift += 1
+    encodings.update({'start_positions': start_positions, 'end_positions': end_positions})
+add_token_positions(train_encodings, train_answers)
+add_token_positions(val_encodings, val_answers)
 ```
