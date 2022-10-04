@@ -8,6 +8,7 @@ https://towardsdatascience.com/how-to-fine-tune-a-q-a-transformer-86f91ec92997
 import os
 import requests
 import json
+import torch
 from transformers import DistilBertTokenizerFast
 if not os.path.exists('squad'):
     os.mkdir('squad')
@@ -72,4 +73,13 @@ def add_token_positions(encodings, answers):
     encodings.update({'start_positions': start_positions, 'end_positions': end_positions})
 add_token_positions(train_encodings, train_answers)
 add_token_positions(val_encodings, val_answers)
+class SquadDataset(torch.utils.data.Dataset):
+    def __init__(self, encodings):
+        self.encodings = encodings
+    def __getitem__(self, idx):
+        return {key: torch.tensor(val[idx]) for key, val in self.encodings.items()}
+    def __len__(self):
+        return len(self.encodings.input_ids)
+train_dataset = SquadDataset(train_encodings)
+val_dataset = SquadDataset(val_encodings)
 ```
