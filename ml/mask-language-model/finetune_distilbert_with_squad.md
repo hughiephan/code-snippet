@@ -9,7 +9,7 @@ import os
 import requests
 import json
 import torch
-from transformers import DistilBertTokenizerFast
+from transformers import DistilBertTokenizerFast, DistilBertForQuestionAnswering
 from torch.utils.data import DataLoader
 from transformers import AdamW
 from tqdm import tqdm
@@ -19,7 +19,7 @@ url = 'https://rajpurkar.github.io/SQuAD-explorer/dataset/'
 res = requests.get(f'{url}train-v2.0.json')
 for file in ['train-v2.0.json', 'dev-v2.0.json']:
     res = requests.get(f'{url}{file}')
-    with open(f'../data/benchmarks/squad/{file}', 'wb') as f:
+    with open(f'squad/{file}', 'wb') as f:
         for chunk in res.iter_content(chunk_size=4):
             f.write(chunk)
 def read_squad(path):
@@ -58,6 +58,7 @@ def add_end_idx(answers, contexts):
                     answer['answer_end'] = end_idx - n
 add_end_idx(train_answers, train_contexts)
 add_end_idx(val_answers, val_contexts)
+model = DistilBertForQuestionAnswering.from_pretrained("distilbert-base-uncased")
 tokenizer = DistilBertTokenizerFast.from_pretrained('distilbert-base-uncased')
 train_encodings = tokenizer(train_contexts, train_questions, truncation=True, padding=True)
 val_encodings = tokenizer(val_contexts, val_questions, truncation=True, padding=True)
