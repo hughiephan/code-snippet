@@ -1,4 +1,4 @@
-# Finetune question answering nlirobert with Covid dataset
+# Usage question answering nlirobert with Covid dataset
 
 # Reference
 - https://github.com/alexaapo/SBERT-for-Question-Answering-on-COVID-19-Dataset
