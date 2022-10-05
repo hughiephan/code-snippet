@@ -1,0 +1,33 @@
+
+\documentclass[12pt]{article}
+\usepackage{lingmacros}
+\usepackage{tree-dvips}
+\begin{document}
+
+https://theaisummer.com/self-attention
+\section*{Self Attention Math}
+
+
+Our inputs
+$$
+\mathbf{X} \in \mathcal{R}^{\text {batch } \times \text { tokens } \times d_{\text {model }}},
+$$
+and trainable weight matrices:
+$$
+\mathbf{W}^Q, \mathbf{W}^K, \mathbf{W}^V \in \mathcal{R}^{d_{\text {model }} \times d_k}
+$$
+Representation
+$$
+\mathbf{Q} = \mathbf{X}\mathbf{W}^Q,
+\mathbf{K} = \mathbf{X}\mathbf{W}^K,
+\mathbf{V} = \mathbf{X}\mathbf{W}^V,
+\mathcal{R}^{\text{batch} \times \text{tokens} \times d_{\text{k}}}
+$$
+Attention layer
+$$
+\mathbf{Y}=
+\operatorname{Attention}(\mathbf{Q}, \mathbf{K}, \mathbf{V})=
+\operatorname{softmax}\left(\frac{\mathbf{Q} \mathbf{K}^T}{\sqrt{d_k}}\right) \mathbf{V}
+$$
+TODO
+\end{document}
