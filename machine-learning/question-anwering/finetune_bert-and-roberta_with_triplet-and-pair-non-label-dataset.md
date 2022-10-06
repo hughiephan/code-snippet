@@ -1,7 +1,7 @@
 # Train Sentence Transformer
 
 # Reference
-- Article https://towardsdatascience.com/how-to-fine-tune-a-q-a-transfor
+- Article https://huggingface.co/blog/how-to-train-sentence-transformers
 - Triplet non-label Dataset: https://huggingface.co/datasets/embedding-data/QQP_triplets
 - Pair non-label Dataset: https://huggingface.co/datasets/embedding-data/sentence-compression
 # Prerequisites
