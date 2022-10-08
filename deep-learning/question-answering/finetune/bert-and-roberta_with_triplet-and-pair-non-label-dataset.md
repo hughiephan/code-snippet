@@ -1,9 +1,14 @@
 # Train Sentence Transformer
 
-# Reference
-- Article https://huggingface.co/blog/how-to-train-sentence-transformers
+# Description
+- Reference: https://huggingface.co/blog/how-to-train-sentence-transformers
 - Triplet non-label Dataset: https://huggingface.co/datasets/embedding-data/QQP_triplets
 - Pair non-label Dataset: https://huggingface.co/datasets/embedding-data/sentence-compression
+- Model:
+  - sentence-transformers/all-MiniLM-L6-v2
+  - distilroberta-base
+  - embedding-data/distilroberta-base-sentence-transformer
+
 # Prerequisites
 ```
 !pip install sentence-transformers

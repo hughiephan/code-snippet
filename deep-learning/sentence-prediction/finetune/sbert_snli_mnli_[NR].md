@@ -1,15 +1,10 @@
-# Finetune sentence transformer
+# Sentence Prediction: Finetune Sentence Transformer with SNLI and MNLI datasets
 
-# Reference
-- https://www.pinecone.io/learn/fine-tune-sentence-transformers-mnr/
-
-# Content
-- Entailment: Premise (Anchor) -> Hypothesis
-- Neutral: Premises, Hypothesis can be true, but doesn't mean related
-- Contradiction: Premise and Hypothesis contradict each other.
-- Multiple Negatives Ranking doesn't use label
-- Positive = 0
-- Produce similar embeddings between pairs, and maintain different embeddings for non-pairs
+# Description
+- Reference: https://www.pinecone.io/learn/fine-tune-sentence-transformers-mnr/
+- Model
+  - bert-base-uncased
+  - Multiple Negatives Ranking Loss
 
 # Deep Implementation for fine-tuning
 ```python

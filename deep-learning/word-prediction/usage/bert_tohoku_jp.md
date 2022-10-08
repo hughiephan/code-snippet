@@ -1,17 +1,19 @@
-# Reference
-https://qiita.com/MMsk0914/items/b1fbc1601aae1d534287
+# Word Prediction: Usage of Bert Tohoku for Japanese Language 
 
-# Content
-- Made by Tohoku cl-tohoku/bert-base-japanese-whole-word-masking 
+# Description
+- Reference: https://qiita.com/MMsk0914/items/b1fbc1601aae1d534287
+- Model: 
+  - cl-tohoku/bert-base-japanese-whole-word-masking
 
-# Code 
-```python
 # Prerequisites
+```python
 !pip install -q transformers==4.9.0
 !pip install -q fugashi
 !pip install -q ipadic
+```
 
-# Setup
+# Code 
+```python
 import torch
 import transformers
 from transformers import BertJapaneseTokenizer, BertForMaskedLM
@@ -29,7 +31,7 @@ pred = outputs[0][0, masked_idx]
 def predict_mlm(model, input, masked_idx):
     with torch.no_grad():
         outputs = model(input)
-        predictions = outputs[0][0, masked_idx].topk(5) # 予測結果の上位5件を抽出
+        predictions = outputs[0][0, masked_idx].topk(5)
     for i, idx in enumerate(predictions.indices):
         index = idx.item()
         token = bert_tokenizer.convert_ids_to_tokens([index])[0]
