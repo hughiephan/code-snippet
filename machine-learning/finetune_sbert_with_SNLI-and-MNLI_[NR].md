@@ -101,4 +101,40 @@ for epoch in range(epochs):
 ```
 # Fast Implementation for fine-tuning
 ```python
+import datasets
+from sentence_transformers import InputExample, models, SentenceTransformer, losses
+from sentence_transformers import datasets # Might conflict with default datasets library
+from tqdm.auto import tqdm
+snli = datasets.load_dataset('snli', split='train')
+mnli = datasets.load_dataset('glue', 'mnli', split='train')
+snli = snli.cast(mnli.features)
+dataset = datasets.concatenate_datasets([snli, mnli])
+del snli, mnli
+dataset = dataset.filter(
+    lambda x: True if x['label'] == 0 else False
+)
+train_samples = []
+for row in tqdm(nli):
+    train_samples.append(InputExample(
+        texts=[row['premise'], row['hypothesis']]
+    ))
+batch_size = 32
+loader = datasets.NoDuplicatesDataLoader(
+    train_samples, batch_size=batch_size)
+bert = models.Transformer('bert-base-uncased')
+pooler = models.Pooling(
+    bert.get_word_embedding_dimension(),
+    pooling_mode_mean_tokens=True
+)
+model = SentenceTransformer(modules=[bert, pooler])
+loss = losses.MultipleNegativesRankingLoss(model)
+epochs = 1
+warmup_steps = int(len(loader) * epochs * 0.1)
+model.fit(
+    train_objectives=[(loader, loss)],
+    epochs=epochs,
+    warmup_steps=warmup_steps,
+    output_path='./sbert_test_mnr2',
+    show_progress_bar=False
+)
 ```
