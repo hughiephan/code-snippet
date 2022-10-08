@@ -113,7 +113,7 @@ model.save_pretrained(model_path)
 tokenizer.save_pretrained(model_path) # Save the newly trained model
 ```
 Then load and evaluate the newly trained model with Exact Match 
-```
+```python
 model_path = 'models/distilbert-custom'
 model = DistilBertForQuestionAnswering.from_pretrained(model_path)
 tokenizer = DistilBertTokenizerFast.from_pretrained(model_path)
