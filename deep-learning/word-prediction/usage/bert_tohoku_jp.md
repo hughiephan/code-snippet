@@ -37,4 +37,3 @@ def predict_mlm(model, input, masked_idx):
         print(f'順位:{i + 1}\n単語:{token}')  
 predict_mlm(lm_bert, tokens_tensor, masked_idx)
 ```
-
