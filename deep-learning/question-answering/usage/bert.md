@@ -5,9 +5,12 @@
 - None
 ## Model
 - bert-large-uncased-whole-word-masking-finetuned-squad
-## Code
+## Prerequisites
 ```python
 !pip install transformers
+```
+## Code
+```python
 import torch
 from transformers import BertForQuestionAnswering
 from transformers import BertTokenizer
