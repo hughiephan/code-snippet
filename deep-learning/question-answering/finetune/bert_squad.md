@@ -112,7 +112,7 @@ for epoch in range(3):
         loop.set_postfix(loss=loss.item())
 ```
 Save the trained model
-```
+```python
 model_path = 'models/distilbert-custom'
 model.save_pretrained(model_path)
 tokenizer.save_pretrained(model_path) # Save the newly trained model
