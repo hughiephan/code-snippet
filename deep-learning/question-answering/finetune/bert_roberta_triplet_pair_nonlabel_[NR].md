@@ -1,21 +1,19 @@
-# Train Sentence Transformer
-
-# Description
+# Question Answering: Usage of Bert and Roberta with non-label Triplet and Pair datasets
+## Reference
 - Reference: https://huggingface.co/blog/how-to-train-sentence-transformers
+## Dataset
 - Triplet non-label Dataset: https://huggingface.co/datasets/embedding-data/QQP_triplets
 - Pair non-label Dataset: https://huggingface.co/datasets/embedding-data/sentence-compression
-- Model:
-  - sentence-transformers/all-MiniLM-L6-v2
-  - distilroberta-base
-  - embedding-data/distilroberta-base-sentence-transformer
-
-# Prerequisites
+## Model
+- sentence-transformers/all-MiniLM-L6-v2
+- distilroberta-base
+- embedding-data/distilroberta-base-sentence-transformer
+## Prerequisites
 ```
 !pip install sentence-transformers
 !pip install datasets
 ```
-
-# Code (Triplet)
+## Code (Triplet)
 ```python
 from sentence_transformers import SentenceTransformer, models
 from sentence_transformers import SentenceTransformer, InputExample, losses
@@ -48,8 +46,7 @@ pooling_model = models.Pooling(word_embedding_model.get_word_embedding_dimension
 model = SentenceTransformer(modules=[word_embedding_model, pooling_model])
 ...
 ```
-
-# Code (Pair)
+## Code (Pair)
 ```python
 modelB = SentenceTransformer('embedding-data/distilroberta-base-sentence-transformer')
 dataset_id = "embedding-data/sentence-compression"

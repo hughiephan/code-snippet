@@ -1,16 +1,12 @@
 # Sentence Prediction: Finetune Sentence Transformer with SNLI and MNLI datasets
-
-# Description
-- Reference: https://www.pinecone.io/learn/fine-tune-sentence-transformers-mnr/
-
+## Reference
+- https://www.pinecone.io/learn/fine-tune-sentence-transformers-mnr/
 ## Dataset
 - SNLI, MNLI from `import datasets`
-
 ## Model
-  - bert-base-uncased
-  - Multiple Negatives Ranking Loss
-
-# Deep Implementation for fine-tuning
+- bert-base-uncased
+- Multiple Negatives Ranking Loss
+## Deep Implementation for fine-tuning
 ```python
 import datasets
 import torch

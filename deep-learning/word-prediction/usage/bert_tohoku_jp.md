@@ -1,18 +1,17 @@
 # Word Prediction: Usage of Bert Tohoku for Japanese Language 
-
-# Description
-- Reference: https://qiita.com/MMsk0914/items/b1fbc1601aae1d534287
+## Reference
+- https://qiita.com/MMsk0914/items/b1fbc1601aae1d534287
+## Dataset
+- None
 ## Model 
 - cl-tohoku/bert-base-japanese-whole-word-masking
-
-# Prerequisites
+## Prerequisites
 ```python
 !pip install -q transformers==4.9.0
 !pip install -q fugashi
 !pip install -q ipadic
 ```
-
-# Code 
+## Code 
 ```python
 import torch
 import transformers

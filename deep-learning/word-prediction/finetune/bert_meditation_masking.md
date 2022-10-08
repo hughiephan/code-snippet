@@ -1,13 +1,11 @@
 # Word Prediction: Finetune Bert with Meditation Dataset + Masking Technique
-
 ## Reference
 - https://towardsdatascience.com/masked-language-modelling-with-bert-7d49793e5d2c
 ## Dataset
 - Meditation Dataset: https://github.com/jamescalam/transformers/blob/main/data/text/meditations/clean.txt
 ## Model
 - bert-base-uncased
-
-# Deep Implemenation for fine-tuning
+## Deep Implemenation for fine-tuning
 ```python
 from transformers import BertTokenizer, BertForMaskedLM
 from transformers import AdamW
@@ -60,7 +58,7 @@ for epoch in range(epochs):
         loop.set_description(f'Epoch {epoch}')
         loop.set_postfix(loss=loss.item())
 ```
-# Fast implmentation for fine-tuning
+## Fast implmentation for fine-tuning
 ```python
 import torch
 from transformers import BertTokenizer, BertForMaskedLM

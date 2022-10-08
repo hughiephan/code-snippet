@@ -1,6 +1,4 @@
 # Question Answering: Finetune of Roberta with Covid dataset
-
-# Description
 ## Reference: 
 - https://github.com/alexaapo/SBERT-for-Question-Answering-on-COVID-19-Dataset
 ## Model
@@ -10,8 +8,7 @@
 !pip install -U sentence-transformers
 !pip install spicy
 ```
-
-# Code
+## Code
 ```python
 import pandas as pd
 import numpy as np

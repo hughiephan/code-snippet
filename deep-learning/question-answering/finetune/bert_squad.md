@@ -1,9 +1,11 @@
-# Finetune QA
-
-# Reference
-https://towardsdatascience.com/how-to-fine-tune-a-q-a-transformer-86f91ec92997
-
-# Code
+# Question Answering: Finetune Bert with Squad Dataset
+## Reference
+- https://towardsdatascience.com/how-to-fine-tune-a-q-a-transformer-86f91ec92997
+## Dataset
+- Squad: https://rajpurkar.github.io/SQuAD-explorer/dataset/
+## Model
+- distilbert-base-uncased
+## Code
 ```python
 import os
 import requests

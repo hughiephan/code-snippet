@@ -1,13 +1,9 @@
 # Question Answering: Usage of Bert
-
-# Description
-## Reference: 
+## Reference
 - https://medium.com/analytics-vidhya/question-answering-system-with-bert-ebe1130f8def
-
 ## Model
 - bert-large-uncased-whole-word-masking-finetuned-squad
-
-# Code
+## Code
 ```python
 !pip install transformers
 import torch
