@@ -5,7 +5,7 @@ https://qiita.com/MMsk0914/items/b1fbc1601aae1d534287
 - Made by Tohoku cl-tohoku/bert-base-japanese-whole-word-masking 
 
 # Code 
-```
+```python
 # Prerequisites
 !pip install -q transformers==4.9.0
 !pip install -q fugashi
