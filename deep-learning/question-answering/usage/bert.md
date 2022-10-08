@@ -6,7 +6,7 @@
 ## Model
 - bert-large-uncased-whole-word-masking-finetuned-squad
 ## Prerequisites
-```shell
+```bash
 !pip install transformers
 ```
 ## Code
