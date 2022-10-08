@@ -110,6 +110,9 @@ for epoch in range(3):
         optim.step()
         loop.set_description(f'Epoch {epoch}')
         loop.set_postfix(loss=loss.item())
+```
+Save the trained model
+```
 model_path = 'models/distilbert-custom'
 model.save_pretrained(model_path)
 tokenizer.save_pretrained(model_path) # Save the newly trained model
