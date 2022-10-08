@@ -1,6 +1,8 @@
 # Question Answering: Usage of Bert
 ## Reference
 - https://medium.com/analytics-vidhya/question-answering-system-with-bert-ebe1130f8def
+## Dataset
+- None
 ## Model
 - bert-large-uncased-whole-word-masking-finetuned-squad
 ## Code
