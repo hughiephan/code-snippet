@@ -9,10 +9,10 @@ https://towardsdatascience.com/masked-language-modelling-with-bert-7d49793e5d2c
 - Process the input_ids and labels tensors through our BERT model and calculate the loss between them both
 - 512 tokens -> logits (vector) -> function soft max + argmax -> predicted token_id
 - Uncased model (doesn't distinguish english and English)
+- Dataset: Download meditation dataset from here https://github.com/jamescalam/transformers/blob/main/data/text/meditations/clean.txt
 
-# Code 
-## Base
-```
+# Masking technique
+```python
 from transformers import BertTokenizer, BertForMaskedLM
 import torch
 tokenizer = BertTokenizer.from_pretrained('bert-base-uncased')
@@ -33,9 +33,9 @@ inputs.input_ids[0, selection] = 103 # Add Mask token
 outputs = model(**inputs)
 outputs.loss
 ```
-## Fine-tune with pytorch
-Download meditation dataset from here https://github.com/jamescalam/transformers/blob/main/data/text/meditations/clean.txt
-```
+
+# Deep Implemenation for fine-tuning
+```python
 from transformers import BertTokenizer, BertForMaskedLM
 from transformers import AdamW
 from transformers import TrainingArguments
@@ -87,8 +87,8 @@ for epoch in range(epochs):
         loop.set_description(f'Epoch {epoch}')
         loop.set_postfix(loss=loss.item())
 ```
-If we don't want to use Optim, backward,... Just use Trainer
-```
+# Fast implmentation for fine-tuning
+```python
 import torch
 from transformers import BertTokenizer, BertForMaskedLM
 from transformers import AdamW
