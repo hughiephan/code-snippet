@@ -1,9 +1,11 @@
-# Usage question answering nlirobert with Covid dataset
+# Question Answering: Finetune of Roberta with Covid dataset
 
-# Reference
+# Description
+## Reference: 
 - https://github.com/alexaapo/SBERT-for-Question-Answering-on-COVID-19-Dataset
-
-# Prerequisites
+## Model
+- SentenceTransformer('nli-roberta-base')
+## Prerequisites
 ```
 !pip install -U sentence-transformers
 !pip install spicy

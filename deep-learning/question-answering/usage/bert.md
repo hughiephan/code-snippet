@@ -1,18 +1,14 @@
-# Reference
-https://medium.com/analytics-vidhya/question-answering-system-with-bert-ebe1130f8def
+# Question Answering: Usage of Bert
 
-# Content
-- Question and answer related
-- WWM
-- SQUAD https://rajpurkar.github.io/SQuAD-explorer/
-- With Chinese https://aclanthology.org/2022.findings-acl.1.pdf
-  -  For the Chinese language, however, there is no subword because each token is an atomic character    
-  - When one character needs to be inserted or replaced, the model trained with character-level masking CLM performs the best.
-  - When more than one character needs to be handled, WWM is the key to better performance
-- WWM: The core concept behind subwords is that frequently occurring words should be in the vocabulary, whereas rare words should be split into frequent sub words. Eg. The word “refactoring” can be split into “re”, “factor”, and “ing”. Subwords “re”, “factor” and “ing” occur more frequently than the word refactoring, and its overall meaning is also kept intact.
+# Description
+## Reference: 
+- https://medium.com/analytics-vidhya/question-answering-system-with-bert-ebe1130f8def
+
+## Model
+- bert-large-uncased-whole-word-masking-finetuned-squad
 
 # Code
-```
+```python
 !pip install transformers
 import torch
 from transformers import BertForQuestionAnswering

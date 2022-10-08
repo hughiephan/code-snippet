@@ -1,10 +1,11 @@
 # Word Prediction: Finetune Bert with Meditation Dataset + Masking Technique
 
 # Description
-- Reference: https://towardsdatascience.com/masked-language-modelling-with-bert-7d49793e5d2c
-## Dataset: 
+## Reference: 
+- https://towardsdatascience.com/masked-language-modelling-with-bert-7d49793e5d2c
+## Dataset
 - Meditation Dataset: https://github.com/jamescalam/transformers/blob/main/data/text/meditations/clean.txt
-## Model: 
+## Model
 - bert-base-uncased
 
 # Deep Implemenation for fine-tuning

@@ -2,7 +2,11 @@
 
 # Description
 - Reference: https://www.pinecone.io/learn/fine-tune-sentence-transformers-mnr/
-- Model
+
+## Dataset
+- SNLI, MNLI from `import datasets`
+
+## Model
   - bert-base-uncased
   - Multiple Negatives Ranking Loss
 

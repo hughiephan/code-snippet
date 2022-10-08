@@ -2,8 +2,8 @@
 
 # Description
 - Reference: https://qiita.com/MMsk0914/items/b1fbc1601aae1d534287
-- Model: 
-  - cl-tohoku/bert-base-japanese-whole-word-masking
+## Model 
+- cl-tohoku/bert-base-japanese-whole-word-masking
 
 # Prerequisites
 ```python
