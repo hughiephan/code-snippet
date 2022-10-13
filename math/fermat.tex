@@ -1,0 +1,26 @@
+
+\documentclass[12pt]{article}
+\usepackage{lingmacros}
+\usepackage{tree-dvips}
+\usepackage{amsmath}
+\usepackage{hyperref}
+\begin{document}
+
+\section*{Simplified proof of Fermat}
+\\
+Reference:  \url{https://www.youtube.com/watch?v=EymVXkPWxyc&ab_channel=MetaMaths}
+\\
+Suppose $y^n+x^n=z^n$ has a solution.
+\\
+Assume  $\mathrm{x}<\mathrm{y}$, 
+$x<z$, $y<z$, 
+and $n > z$ 
+\\
+\\
+$x^n=z^n-y^n=(z-y)\left(z^{n-1}+y z^{n-2}+\ldots+y^{n-1}\right)$
+\begin{align*} 
+&>(z-y)\left(y^{n-1}+y y^{n-2}+\ldots+y^{n-1}\right) \\
+&>(z-y) n y^{n-1}>n y^{n-1} \\
+&>z y^{n-1}>z x^{n-1}>x^n
+\end{align*}
+\end{document}
