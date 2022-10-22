@@ -103,7 +103,7 @@ for epoch in range(num_epochs):
   print(metric.compute())
 ```
 Test
-```
+```python
 model.eval()
 test_dataloader = DataLoader(
     tokenized_dataset["test"], batch_size=32, collate_fn=data_collator
