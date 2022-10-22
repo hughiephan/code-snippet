@@ -18,6 +18,10 @@ import pandas as pd
 from datasets import load_dataset,Dataset,DatasetDict
 from transformers import DataCollatorWithPadding,AutoModelForSequenceClassification, Trainer, TrainingArguments,AutoTokenizer,AutoModel,AutoConfig
 from transformers.modeling_outputs import TokenClassifierOutput
+from torch.utils.data import DataLoader
+from transformers import AdamW,get_scheduler
+from datasets import load_metric
+from tqdm.auto import tqdm
 data=load_dataset("json",data_files="news-headlines-dataset-for-sarcasm-detection.zip")
 data=data.rename_column("is_sarcastic","label")
 data=data.remove_columns(['article_link'])
@@ -47,20 +51,69 @@ class CustomModel(nn.Module):
     self.model = model = AutoModel.from_pretrained(checkpoint,config=AutoConfig.from_pretrained(checkpoint, output_attentions=True,output_hidden_states=True))
     self.dropout = nn.Dropout(0.1) 
     self.classifier = nn.Linear(768,num_labels) # load and initialize weights
-
   def forward(self, input_ids=None, attention_mask=None,labels=None):
-    #Extract outputs from the body
     outputs = self.model(input_ids=input_ids, attention_mask=attention_mask)
-
-    #Add custom layers
     sequence_output = self.dropout(outputs[0]) #outputs[0]=last hidden state
-
     logits = self.classifier(sequence_output[:,0,:].view(-1,768)) # calculate losses
-    
     loss = None
     if labels is not None:
       loss_fct = nn.CrossEntropyLoss()
       loss = loss_fct(logits.view(-1, self.num_labels), labels.view(-1))
-    
     return TokenClassifierOutput(loss=loss, logits=logits, hidden_states=outputs.hidden_states,attentions=outputs.attentions)
+device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+model=CustomModel(checkpoint=checkpoint,num_labels=2).to(device)
+train_dataloader = DataLoader(
+    tokenized_dataset["train"], shuffle=True, batch_size=32, collate_fn=data_collator
+)
+eval_dataloader = DataLoader(
+    tokenized_dataset["valid"], batch_size=32, collate_fn=data_collator
+)
+optimizer = AdamW(model.parameters(), lr=5e-5)
+num_epochs = 3
+num_training_steps = num_epochs * len(train_dataloader)
+lr_scheduler = get_scheduler(
+    "linear",
+    optimizer=optimizer,
+    num_warmup_steps=0,
+    num_training_steps=num_training_steps,
+)
+metric = load_metric("f1")
+progress_bar_train = tqdm(range(num_training_steps))
+progress_bar_eval = tqdm(range(num_epochs * len(eval_dataloader)))
+for epoch in range(num_epochs):
+  model.train()
+  for batch in train_dataloader:
+      batch = {k: v.to(device) for k, v in batch.items()}
+      outputs = model(**batch)
+      loss = outputs.loss
+      loss.backward()
+      optimizer.step()
+      lr_scheduler.step()
+      optimizer.zero_grad()
+      progress_bar_train.update(1)
+  model.eval()
+  for batch in eval_dataloader:
+    batch = {k: v.to(device) for k, v in batch.items()}
+    with torch.no_grad():
+        outputs = model(**batch)
+    logits = outputs.logits
+    predictions = torch.argmax(logits, dim=-1)
+    metric.add_batch(predictions=predictions, references=batch["labels"])
+    progress_bar_eval.update(1)
+  print(metric.compute())
+```
+Test
+```
+model.eval()
+test_dataloader = DataLoader(
+    tokenized_dataset["test"], batch_size=32, collate_fn=data_collator
+)
+for batch in test_dataloader:
+    batch = {k: v.to(device) for k, v in batch.items()}
+    with torch.no_grad():
+        outputs = model(**batch)
+    logits = outputs.logits
+    predictions = torch.argmax(logits, dim=-1)
+    metric.add_batch(predictions=predictions, references=batch["labels"])
+metric.compute()
 ```
