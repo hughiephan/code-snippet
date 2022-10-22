@@ -5,7 +5,13 @@ https://towardsdatascience.com/adding-custom-layers-on-top-of-a-hugging-face-mod
 cardiffnlp/twitter-roberta-base-emotion
 ## Dataset
 None
-## Code
+## Prerequisites
 ```
-TODO
+pip install datasets transformers[sentencepiece]
+```
+## Code
+```python
+checkpoint = "cardiffnlp/twitter-roberta-base-emotion"
+tokenizer = AutoTokenizer.from_pretrained(checkpoint)
+tokenizer.model_max_len=512
 ```
