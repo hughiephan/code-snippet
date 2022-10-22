@@ -1,11 +1,14 @@
-# Reference 
+# Create and visualize Bert embeddings [Japanese]
+## Reference 
 https://zenn.dev/hpp/articles/d347bcb7ed0fc0
-
-# Content
+## Model
+cl-tohoku/bert-base-japanese-whole-word-masking
+## Dataset
+None
+## Content
 - Use tSNE to transform Bert embeddings into 2 dimension
 - Then we visualize the 2D emebedding
-
-# Code
+## Code
 ```python
 import torch
 import holoviews as hv
@@ -21,7 +24,6 @@ for idx in vocab.values():
 from sklearn.manifold import TSNE
 tsne = TSNE(n_components=2, random_state=0)
 reduced_vectors = tsne.fit_transform(list(vectors.values())[:3000])
-# Visualize
 points = hv.Points(reduced_vectors)
 labels = hv.Labels({('x', 'y'): reduced_vectors, 'text': [token for token, _ in zip(vocab, reduced_vectors)]}, ['x', 'y'], 'text')
 (points * labels).opts(
