@@ -1,4 +1,4 @@
-# Usage Sentence Bert [Japanese]
+# Sentence Prediction: Usage of Sentence Bert [Japanese]
 ## Reference
 https://qiita.com/sonoisa/items/1df94d0a98cd4f209051
 ## Dataset
