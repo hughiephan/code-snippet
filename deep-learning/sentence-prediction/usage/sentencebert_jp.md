@@ -7,7 +7,7 @@ None
 - v1: sonoisa/sentence-bert-base-ja-mean-tokens
 - v2: sonoisa/sentence-bert-base-ja-mean-tokens-v2
 ## Code
-```
+```python
 from transformers import BertJapaneseTokenizer, BertModel
 import torch
 import scipy.spatial
