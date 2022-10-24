@@ -11,6 +11,8 @@ None
 from transformers import BertJapaneseTokenizer, BertModel
 import torch
 import scipy.spatial
+import warnings
+warnings.filterwarnings("ignore")    
 class SentenceBertJapanese:
     def __init__(self, model_name_or_path, device=None):
         self.tokenizer = BertJapaneseTokenizer.from_pretrained(model_name_or_path)
@@ -36,7 +38,8 @@ class SentenceBertJapanese:
             sentence_embeddings = self._mean_pooling(model_output, encoded_input["attention_mask"]).to('cpu')
             all_embeddings.extend(sentence_embeddings)
         return torch.stack(all_embeddings)
-sentences = ["お辞儀をしている男性会社員", "笑い袋", "テクニカルエバンジェリスト（女性）", "戦うAI", "笑う男性（5段階）", 
+sentences = ["お辞儀をしている男性会社員", "笑い袋", "テクニカルエバンジェリスト（女性）", "戦うAI", "笑う男性（5段階）"]
+model = SentenceBertJapanese("sonoisa/sentence-bert-base-ja-mean-tokens")
 sentence_vectors = model.encode(sentences)
 queries = ['暴走したAI', '暴走した人工知能', 'いらすとやさんに感謝', 'つづく']
 query_embeddings = model.encode(queries).numpy()
