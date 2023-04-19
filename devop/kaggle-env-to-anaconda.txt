@@ -1,0 +1,2 @@
+pip freeze > requirements.txt   # Export environment
+FOR /F %k in (requirements.txt) DO ( if NOT # == %k ( pip install %k ) )  # For windows inside conda terminal
