@@ -1,7 +1,7 @@
 https://mml-book.github.io/book/mml-book.pdf
 
 
-Likelihood function $\mathcal{L}_{n}$
+Likelihood function $\mathcal{L}_{n}(\theta)$
 
 ------
 
