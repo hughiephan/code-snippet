@@ -24,5 +24,5 @@ A parameter space $\Theta$
 We often work with this form $\ell(\theta ; \mathbf{y})=\ln \mathcal{L}_{n}(\theta ; \mathbf{y}) .$
 
 --------------
-$p(x | \theta)$ 
+In Bayesian inference, likelihood is $p(x | \theta)$ 
 
