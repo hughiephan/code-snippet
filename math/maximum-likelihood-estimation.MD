@@ -19,5 +19,5 @@ We often work with this form $\ell(\theta ; \mathbf{y})=\ln \mathcal{L}_{n}(\the
 
 $\mathcal{L}(\boldsymbol{\theta}) =-\sum_{n=1}^N \log p\left(y_n \mid \boldsymbol{x}_n, \boldsymbol{\theta}\right)$
 
-$\sum_{n=1}^N \log $
+$\sum_{n=1}^N$
 
