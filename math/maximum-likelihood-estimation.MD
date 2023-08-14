@@ -23,5 +23,6 @@ A parameter space $\Theta$
 ---------------
 We often work with this form $\ell(\theta ; \mathbf{y})=\ln \mathcal{L}_{n}(\theta ; \mathbf{y}) .$
 
-
+--------------
+$p(x | \theta)$ 
 
