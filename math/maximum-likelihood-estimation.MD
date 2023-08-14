@@ -1,5 +1,7 @@
 https://mml-book.github.io/book/mml-book.pdf
 
+Some likelihood functions
+Bernoulli, Binomial, Gaussian, Multinomial
 
 Likelihood function $\mathcal{L}_{n}(\theta)$
 
