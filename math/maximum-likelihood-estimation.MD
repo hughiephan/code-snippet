@@ -1,7 +1,7 @@
 https://mml-book.github.io/book/mml-book.pdf
 
 
-Likelihood function $\mathcal{L}_{n}(\theta)=\mathcal{L}_{n}(\theta ; \mathbf{y})=f_{n}(\mathbf{y} ; \theta),$
+Likelihood function $\mathcal{L}_{n}(\theta)=\mathcal{L}_{n}(\theta ; \mathbf{y})=f_{n}(\mathbf{y} ; \theta)$
 
 ------
 
