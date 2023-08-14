@@ -21,4 +21,4 @@ $\mathcal{L}(\boldsymbol{\theta}) =-\sum_{n=1}^N \log p\left(y_n \mid \boldsymbo
 
 $\sum_{n=1}^N$
 
-$\sum_{i=1}^{n} a_i$
+$$\sum_{i=1}^{n} a_i$$
