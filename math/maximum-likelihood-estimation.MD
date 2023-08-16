@@ -28,3 +28,8 @@ In Bayesian inference, likelihood is $p(x | \theta)$
 
 --------------
 The likelihood $p(y | x)$ describes how x and y are related
+
+--------------
+many other areas of machine learning that also benefit from
+using a Gaussian distribution, for example Gaussian processes, variational
+inference, and reinforcement learning
