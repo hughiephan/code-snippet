@@ -26,3 +26,5 @@ We often work with this form $\ell(\theta ; \mathbf{y})=\ln \mathcal{L}_{n}(\the
 --------------
 In Bayesian inference, likelihood is $p(x | \theta)$ 
 
+--------------
+The likelihood $p(y | x)$ describes how x and y are related
