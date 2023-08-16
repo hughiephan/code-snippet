@@ -32,4 +32,4 @@ The likelihood $p(y | x)$ describes how x and y are related
 --------------
 many other areas of machine learning that also benefit from
 using a Gaussian distribution, for example Gaussian processes, variational
-inference, and reinforcement learning
+inference, and reinforcement learning. Gaussians are widely used in statistical estimation and machine learning as they have closed-form expressions for marginal and conditional distributi
